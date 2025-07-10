@@ -13,23 +13,50 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
-    <body style="background-color: lightgrey;">
-        <div class="flexwrap">
-            <div class="flexwrap" style="background-color: white; width: 60%; flex-direction: column;">
-                <h1>Title</h1>
-                <h1>Price</h1>
-                <h2>Intro Info</h2>
-                <p>与您关联的账户会自动扣除，点击确认后将无法撤销</p>
+    <body style="background-color: #F7F6F4;">
+        <div class="flexwrap fullscreen">
+            <div style="width: 40%; display: flex; flex-direction: column; align-items: flex-start; padding-left: 8%; padding-right: 2%;">
 
-                <div class="buttonwrap">
-                    <a href="../index.html" class="button">Cancel & Exit</a>
-                    <a href="upload_successful.html" class="button">Agree & Continue</a>
+                <div>
+                    Layout of static report details<br>
+                    Memory Type: Emotionally Intense Object<br>
+                    <h1>£108.00</h1>
+                    The associated account will be charged automatically.<br>
+                    This action cannot be undone once you click confirm.
+                </div>
+                <br>
+                <img src="../assets/visuals/chart2.png" style="width: 100%;">
+
+                <br><br>
+
+                <div class="buttonwrap" style="width: 110%;">
+                    <a href="../index.html" class="button" id="cancelButton">Cancel</a>
+                    <div class="button" style="cursor:not-allowed;">Receipt</div>
+                    <a href="upload_successful.html" class="button">Confirm and Continue</a>
                 </div>
             </div>
+
+            <img src="../assets/visuals/model.gif" style="width: 50%; height: 97vh;">
         </div>
     </body>   
 
     <script>
+        $(document).ready(function() {
+            $('#cancelButton').on('click', function(e) {
+                e.preventDefault();
+
+                const confirmation = confirm(
+                    "WARNING: This action will irrevocably revert to the homepage.\n" +
+                    "All current progress will be entirely reset and deleted.\n\n" +
+                    "Do you wish to proceed to the homepage?"
+                );
+
+                if (confirmation) {
+                    window.location.href = '../index.html';
+                } else {
+                }
+            });
+        });
     </script>   
 
 </html>

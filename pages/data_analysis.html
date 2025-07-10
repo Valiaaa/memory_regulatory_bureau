@@ -9,42 +9,98 @@
 
         <link rel="stylesheet" href="../style.css">
 
-        <script src="../script.js"></script>   
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../script.js"></script>   
     </head>
 
-    <body style="background-color: lightgrey;">
-        <div class="flexwrap fullscreen">
+    <style>
+          .loading-dots {
+            display: inline-block;
+            width: 20px;
+            text-align: left;
+          }
+    </style>
+
+    <body class="flexwrap">
+        <div class="flexwrap fullscreen" style="height: 98vh;">
             <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-                <h2>记忆识别即将启动<br>
-                    请佩戴检测仪器，并保持静止状态。<br><br>
-                    系统将在 10 秒内自动识别您的回忆行为...</h2>
+                <h6>Memory recognition is about to start.<br>
+                    Please wear the detection device and remain still.<br><br>
+                    The system will automatically recognize your memory behavior within 10 seconds<span class="loading-dots"></span></h6>
             </div>
         </div>
 
         <div class="flexwrap fullscreen">
-            <img src="" style="width: 100%; height: 97vh; background-color: lightgray;">
+            <video muted playsinline id="analysing" style="width: 100%; display: none;">
+                <source src="../assets/visuals/collecting page.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
 
-        <div class="flexwrap fullscreen">
-            <img src="" style="width: 100%; height: 97vh; background-color: lightgray;">
-        </div>
+        <div class="flexwrap fullscreen" id="report" style="display: none; background-color: var(--bgcolor);">
+            <div style="width: 40%; display: flex; flex-direction: column; align-items: flex-start;">
 
-        <div class="flexwrap fullscreen">
-            <div style="width: 50%; display: flex; flex-direction: column; align-items: flex-start;">
-                <h2>Info</h2>
-                <img src="" style="width: 80%; height: 30vh; background-color: lightgray;">
-
+                <img src="../assets/visuals/text.png" style="width: 80%;">
                 <br>
+                <img src="../assets/visuals/brain scan.png" style="width: 80%;">
+
+                <br><br>
 
                 <a href="report.html" class="button">Detailed Report</a>
             </div>
 
-            <img src="" style="width: 50%; height: 97vh; background-color: lightgray;">
+            <img src="../assets/visuals/model.gif" style="width: 50%; height: 97vh;">
         </div>
     </body>   
 
     <script>
+        $(document).ready(function() {
+            const $loadingDots = $('.loading-dots');
+            let dotCount = 0;
+            let intervalId; // 用于存储 setInterval 的 ID，以便清除
+
+            function animateDots() {
+                intervalId = setInterval(() => {
+                dotCount = (dotCount + 1) % 4; // 0, 1, 2, 3 循环
+                let dots = '';
+                for (let i = 0; i < dotCount; i++) {
+                    dots += '.';
+                }
+                $loadingDots.text(dots);
+
+                if (dotCount === 0 && dots === '') {}
+                }, 500); // 每500毫秒更新一次
+            }
+
+            animateDots();
+
+            setTimeout(() => {
+              clearInterval(intervalId); // 停止循环
+              $loadingDots.text(''); // 清除点
+            }, 6000);
+
+
+
+            const video = $('#analysing').get(0);
+            setTimeout(function() {
+                $(video).show();
+
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                playPromise.then(() => {
+                }).catch(error => {
+                    console.error("Video autoplay prevented:", error);
+                });
+                }
+            }, 6100);
+
+
+
+            const report = $('#report').get(0);
+            setTimeout(function() {
+                $(report).show();
+            }, 16100);
+        });
     </script>   
 
 </html>

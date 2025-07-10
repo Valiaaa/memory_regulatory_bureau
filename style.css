@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&display=swap');
 
 :root {
     --bgcolor: #FCFCFF;
+    --greybg: lightgrey;
+    --buttonbg: #161616;
+    --buttonhv: #838383;
 }
 
 body {
@@ -9,14 +13,21 @@ body {
     font-family: "JetBrains Mono", monospace;
     font-weight: 300;
     background-color: var(--bgcolor);
+    font-size: 12px;
 }
 
 h1 {
-    font-weight: 100;
+    font-family: 'Khula'; 
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 120%;
 }
 
-h2 {
-    font-weight: 200;
+h6 {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 150%;
+    margin: 0;
 }
 
 a{
@@ -24,22 +35,23 @@ a{
     color: inherit;
 }
 
-.jetbrains-mono {
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 300;
-  font-style: normal;
+input {
+    border: none;
+    border-bottom: 1.5px solid var(--buttonbg);
 }
 
 /* elements */
 .button {
-    background-color: lightblue;
+    background-color: var(--buttonbg);
+    color: var(--bgcolor);
     width: fit-content;
     padding: 8px 40px;
-    border-radius: 10px;
+    border-radius: 2px;
+    font-size: 16px;
 }
 
 .button:hover {
-    background-color: rgb(141, 185, 200);
+    background-color: var(--buttonhv);
 }
 
 .windows {
@@ -75,6 +87,7 @@ a{
     user-select: none;
     pointer-events: none;
     transition: opacity 0.2s ease;
+    z-index: 2;
 }
 
 .documents {
@@ -84,7 +97,7 @@ a{
 
 .bottombar {
     position: fixed;
-    z-index: 2;
+    z-index: 100;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -109,10 +122,11 @@ a{
     justify-content: center;
     width: 100%;
     height: 100%;
+    height: fit-content;
 }
 
 .buttonwrap {
-    width: 60%; 
+    width: 80%; 
     display: flex; 
     justify-content: space-between;
 }
