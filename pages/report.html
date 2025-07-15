@@ -15,6 +15,17 @@
 
     <body style="background-color: #F7F6F4;">
         <div class="flexwrap fullscreen">
+            <div class="receiptwrap">
+                <img src="../assets/visuals/receipt.svg" class="receipt">
+                <div class="cross">
+                    <?xml version="1.0" encoding="utf-8"?>
+                    <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 6L18 18" stroke="#000000" stroke-linecap="round"/>
+                    <path d="M18 6L6.00001 18" stroke="#000000" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+
             <div style="width: 40%; display: flex; flex-direction: column; align-items: flex-start; padding-left: 8%; padding-right: 2%;">
 
                 <div>
@@ -31,7 +42,7 @@
 
                 <div class="buttonwrap" style="width: 110%;">
                     <a href="../index.html" class="button" id="cancelButton">Cancel</a>
-                    <div class="button" style="cursor:not-allowed;">Receipt</div>
+                    <div class="button" id="receiptbt">Receipt</div>
                     <a href="upload_successful.html" class="button">Confirm and Continue</a>
                 </div>
             </div>
@@ -55,6 +66,14 @@
                     window.location.href = '../index.html';
                 } else {
                 }
+            });
+
+            $('#receiptbt').on('click', function() {
+                $('.receiptwrap').css('display', 'flex');
+             });
+
+            $('.cross').on('click', function() {
+                 $('.receiptwrap').css('display', 'none');
             });
         });
     </script>   
